@@ -4,153 +4,132 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/* 1. Create an array of Employee class objects
-        Accept details for all Employees
-        Display the Employee with highest Salary
-        Accept EmpNo to be searched. Display all details for that employee.*/
-
-namespace Assignment
+namespace Assignment3._3
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("enter size Empolyee Array");
+            Console.WriteLine("enter how many student want");
             int size = Convert.ToInt32(Console.ReadLine());
 
-            Employee[] emp = new Employee[size];
 
-            for (int i = 0; i < emp.Length; i++)
+            Student[] s = new Student[size];
+
+            for (int i = 0; i < s.Length; i++)
             {
-                Console.WriteLine("enter empNo");
+
+                Console.WriteLine("Enter Student Rollno ");
                 int no = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("enter empName");
+
+                Console.WriteLine("Enter Student Name ");
                 string name = Console.ReadLine();
 
-                Console.WriteLine("enter basic salary");
-                decimal basic = Convert.ToDecimal(Console.ReadLine());
 
-                Console.WriteLine("enter deptNo");
-                int dep = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter Student Marks ");
+                decimal mark = Convert.ToInt32(Console.ReadLine());
 
+                Student s1 = new Student(name,no,mark);
 
-                Employee e = new Employee(no, name, basic, dep);
-                emp[i] = e;
+                s[i] = s1;
+
             }
 
-
-            decimal arr = emp[0].Pbasic;
-            for (int i = 1; i < emp.Length; i++)
+            foreach (Student a in s)
             {
-                if (arr < emp[i].Pbasic)
-                {
-                    arr = emp[i].Pbasic;
-                }
+                Console.WriteLine(a.RNO + " " + a.NAME + " " + a.MARKS);
             }
-            Console.WriteLine("highest salary is : " + arr);
 
-            Console.WriteLine("Enter Employee no to be searched");
 
-            int empNo = Convert.ToInt32(Console.ReadLine());
-            foreach (Employee e in emp)
-            {
-                if (e.PempNo == empNo)
-                {
-                    Console.WriteLine("Empno :=" + e.PempNo + " name=: " + e.Pname + " emp basic:= " + e.Pbasic + " depNo := " + e.PdeptNo);
-                }
-            }
 
             Console.ReadLine();
+
         }
+
     }
 
-
-    public class Employee
+    public struct Student
     {
         private string name;
-        private int empNo;
-        private decimal basic;
-        private int deptNo;
+        private int rno;
+        private decimal marks;
 
-
-        public Employee(int empNo, string name, decimal basic, int depNo)
+        public Student(string name, int rno, decimal marks)
         {
 
-            this.empNo = empNo;
             this.name = name;
-            this.basic = basic;
-            this.deptNo = depNo;
+            this.rno = rno;
+            this.marks = marks;
         }
 
-        #region property
-        public string Pname
+        public string NAME
         {
             set
             {
-
-                if (value.Length != 0)
+                if (value == " " || value == null)
                 {
-                    this.name = value;
+
+                    Console.WriteLine("name cannot be blank");
                 }
                 else
                 {
-                    Console.WriteLine("name not be null");
+                    name = value;
                 }
             }
             get
             {
                 return name;
             }
+
         }
 
-        public int PempNo
-        {
-            get
-            {
-                return empNo;
-            }
-        }
-
-        public decimal Pbasic
-        {
-            set
-            {
-                if (value >= 25000 && value <= 100000)
-                {
-                    this.basic = value;
-
-                }
-                else
-                {
-                    Console.WriteLine("enter basic between 25000 to 35000");
-                }
-            }
-            get
-            {
-                return basic;
-            }
-        }
-
-        public int PdeptNo
+        public int RNO
         {
             set
             {
                 if (value > 0)
                 {
-                    this.deptNo = value;
+
+                    Console.WriteLine("EMP no. can be greater thank 0");
                 }
                 else
                 {
-                    Console.WriteLine("deptno must be above 0");
+                    rno = value;
                 }
             }
             get
             {
-                return deptNo;
+                return rno;
             }
+
         }
-        #endregion
+
+        public decimal MARKS
+        {
+            set
+            {
+                if (value > 40)
+                {
+
+                    Console.WriteLine("MARKS can be greater thank 40");
+                }
+                else
+                {
+                    marks = value;
+                }
+            }
+            get
+            {
+                return marks;
+            }
+
+        }
+
+
+
+
 
     }
 }
+
